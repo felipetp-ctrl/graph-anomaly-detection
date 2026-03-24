@@ -10,7 +10,8 @@ def edge_dropout(data, p):
         data_copy = data.clone()
         mask = torch.bernoulli(torch.full((data_copy.num_edges, ), 1 - p))
         data_copy.edge_index = data_copy.edge_index[:, mask.bool()]
-        data_copy.edge_attr = data_copy.edge_attr[mask.bool()]
+        if data_copy.edge_attr is not None:
+            data_copy.edge_attr = data_copy.edge_attr[mask.bool()]
         return data_copy
 
 def augment(data, p_node, p_edge):

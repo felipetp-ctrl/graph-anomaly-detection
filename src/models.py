@@ -69,9 +69,15 @@ class GAE(nn.Module):
 
         self.bn2 = nn.BatchNorm1d(hidden_channels)
 
-    def decode(self, z):
-        A_hat = torch.sigmoid(z @ z.T)
-        return A_hat
+    def decode(self, z, batch_vector):
+        unique_graphs = torch.unique(batch_vector)
+        A_hats = []
+        for i in unique_graphs:
+            mask = batch_vector == i
+            z_i = z[mask]
+            A_hat_i = torch.sigmoid(z_i @ z_i.T)
+            A_hats.append(A_hat_i)
+        return A_hats
     
     def forward(self, x, edge_index, batch):
         x = self.conv1(x, edge_index)
