@@ -2,6 +2,8 @@ import torch
 
 def node_feature_dropout(data, p):
     data_copy = data.clone()
+    if data_copy.x is None:
+        return data_copy
     mask = torch.bernoulli(torch.full((data_copy.num_nodes, 1), 1 - p))
     data_copy.x = data_copy.x * mask
     return data_copy

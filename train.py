@@ -80,9 +80,6 @@ train_idx, temp_idx = train_test_split(np.arange(len(dataset)), test_size=VAL_SI
 
 val_idx, test_idx = train_test_split(temp_idx, test_size=0.5, stratify=y[temp_idx])
 
-np.save('results/train_idx.npy', train_idx)
-np.save('results/test_idx.npy', test_idx)
-
 train_graphs = [dataset[i] for i in train_idx]
 val_graphs = [dataset[i] for i in val_idx]
 test_graphs = [dataset[i] for i in test_idx]
@@ -342,9 +339,12 @@ def compute_anomaly_scores(model, loader, center):
         all_labels.extend(view1.y.cpu().numpy())
     return np.array(all_scores), np.array(all_labels)
 
+
+# calcula centroide no treino
 CLR_model.load_state_dict(torch.load("models/best_CLR.pt", map_location=DEVICE))
 center = compute_center(CLR_model, CLR_train_loader)
 
+# avalia no teste
 test_scores, test_labels = compute_anomaly_scores(CLR_model, CLR_test_loader, center)
 clr_auc = roc_auc_score(test_labels, test_scores)
 print(f"SimCLR Test AUC: {clr_auc:.4f}")
