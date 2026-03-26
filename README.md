@@ -51,13 +51,13 @@ Results across multiple TUDatasets, compared to GLADC values reported in Luo et 
 
 | Dataset | GAE AUC (ours) | SimCLR AUC (ours) | GLADC AUC (paper) |
 |---|---|---|---|
-| BZR | 0.5522 | 0.5979 | 0.715 ± 0.067 |
-| DHFR | 0.5698 | 0.5272 | 0.612 ± 0.041 |
-| COX2 | 0.6178 | 0.5075 | 0.615 ± 0.044 |
-| ENZYMES | 0.5433 | 0.5819 | 0.583 ± 0.035 |
-| AIDS | 0.9968 | 0.7303 | 0.993 ± 0.005 |
-| NCI1 | 0.6608 | 0.5663 | 0.683 ± 0.011 |
-| IMDB-BINARY | 0.6660 | 0.5857 | 0.656 ± 0.023 |
+| BZR | 0.5825 | 0.6538 | 0.715 ± 0.067 |
+| DHFR | 0.6625 | 0.5539 | 0.612 ± 0.041 |
+| COX2 | 0.5795 | 0.6466 | 0.615 ± 0.044 |
+| ENZYMES | 0.5929 | 0.6889 | 0.583 ± 0.035 |
+| AIDS | 0.9894 | 0.5171 | 0.993 ± 0.005 |
+| NCI1 | 0.5519 | 0.5599 | 0.683 ± 0.011 |
+| IMDB-BINARY | 0.6384 | 0.5296 | 0.656 ± 0.023 |
 
 > Results may differ from the paper due to architectural differences (EdgeConv vs GCN,
 > explicit augmentations vs weight perturbation) and dataset-specific hyperparameter sensitivity.
