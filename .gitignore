@@ -16,8 +16,6 @@ build/
 
 # Data & results
 data/
-results/figures/*.png
-results/figures/*.pdf
 *.pt
 *.pth
 *.ckpt
