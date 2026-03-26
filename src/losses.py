@@ -8,6 +8,8 @@ class NTXentLoss(nn.Module):
         self.temperature = temperature
 
     def forward(self, z1, z2):
+        z1 = F.normalize(z1, dim=1)
+        z2 = F.normalize(z2, dim=1)
         sim_matrix = torch.cat([z1, z2], dim=0)
         sim_matrix = (sim_matrix @ sim_matrix.T / self.temperature)
         mask = torch.eye(sim_matrix.shape[0]).to(z1.device)
